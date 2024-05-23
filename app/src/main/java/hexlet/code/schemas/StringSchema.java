@@ -2,32 +2,33 @@ package hexlet.code.schemas;
 
 import java.util.function.Predicate;
 
-public class StringSchema {
+public class StringSchema extends BaseSchema<String>{
 
-    private Predicate<String> isRequired = s -> true;
-    private Predicate<String> isContained = s -> true;
-    private Predicate<String> hasMinLength = s -> true;
+    private Predicate<String> isRequired = string -> true;
+    private Predicate<String> isContained = string -> true;
+    private Predicate<String> hasMinLength = string -> true;
 
     public StringSchema required() {
-        isRequired = s -> s != null && !s.isEmpty();
+        isRequired = string -> string != null && !string.isEmpty();
         return this;
     }
 
     public StringSchema minLength(int length) {
-        hasMinLength = s -> s.length() >= length;
+        hasMinLength = string -> string.length() >= length;
         return this;
     }
 
     public StringSchema contains(String text) {
-        isContained = s -> {
-            if (s == null) {
+        isContained = string -> {
+            if (string == null) {
                 return false;
             }
-            return s.contains(text);
+            return string.contains(text);
         };
         return this;
     }
 
+    @Override
     public boolean isValid(String inputText) {
         return isRequired.test(inputText) && isContained.test(inputText) &&
                 hasMinLength.test(inputText);

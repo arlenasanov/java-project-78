@@ -15,18 +15,13 @@ class StringSchemaTest {
     Validator validator = new Validator();
     StringSchema schema = validator.string();
 
-    @BeforeEach
-    void preparation() {
-
-    }
-
     @ParameterizedTest
     @CsvSource(value = {
             "text, true",
             "'', false",
             ", false"
     })
-    void requiredUsedTest(String input, boolean expected) {
+    void requiredIsUsedTest(String input, boolean expected) {
         schema.required();
 
         boolean result = schema.isValid(input);
@@ -39,7 +34,7 @@ class StringSchemaTest {
             "'', true",
             ", true"
     })
-    void requiredNotUsedTest(String input, boolean expected) {
+    void requiredIsNotUsedTest(String input, boolean expected) {
         boolean result = schema.isValid(input);
         Assertions.assertEquals(result, expected);
     }
@@ -50,7 +45,7 @@ class StringSchemaTest {
             "text, true",
             "'some text', true"
     })
-    void minLength(String input, boolean expected) {
+    void minLengthTest(String input, boolean expected) {
         schema.minLength(4);
 
         boolean result = schema.isValid(input);
@@ -64,7 +59,7 @@ class StringSchemaTest {
             "none, true",
             "two, false"
     })
-    void contains(String input, boolean expected) {
+    void containsTest(String input, boolean expected) {
         schema.contains("one");
 
         boolean result = schema.isValid(input);
