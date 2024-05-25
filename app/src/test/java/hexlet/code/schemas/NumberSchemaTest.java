@@ -2,11 +2,8 @@ package hexlet.code.schemas;
 
 import hexlet.code.Validator;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class NumberSchemaTest {
 
@@ -14,10 +11,7 @@ class NumberSchemaTest {
     NumberSchema schema = validator.number();
 
     @ParameterizedTest
-    @CsvSource(value = {
-            "5, true",
-            ", false"
-    })
+    @CsvSource(value = {"5, true", ", false"})
     void requiredIsUsedTest(Integer number, boolean expected) {
         schema.required();
 
@@ -26,21 +20,14 @@ class NumberSchemaTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {
-            "5, true",
-            ", true"
-    })
+    @CsvSource(value = {"5, true", ", true"})
     void requiredIsNotUsedTest(Integer number, boolean expected) {
         boolean result = schema.isValid(number);
         Assertions.assertEquals(result, expected);
     }
 
     @ParameterizedTest
-    @CsvSource(value = {
-            "5, true",
-            "0, false",
-            "-1, false"
-    })
+    @CsvSource(value = {"5, true", "0, false", "-1, false"})
     void positiveTest(Integer number, boolean expected) {
         schema.positive();
 
@@ -49,12 +36,7 @@ class NumberSchemaTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {
-            "5, true",
-            "10, true",
-            "4, false",
-            "11, false"
-    })
+    @CsvSource(value = {"5, true", "10, true", "4, false", "11, false"})
     void rangeTest(Integer number, boolean expected) {
         final int start = 5;
         final int end = 10;

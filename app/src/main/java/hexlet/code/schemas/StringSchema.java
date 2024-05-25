@@ -1,7 +1,5 @@
 package hexlet.code.schemas;
 
-import java.util.function.Predicate;
-
 public class StringSchema extends BaseSchema<String> {
     public StringSchema required() {
         checks.put("required", string -> string != null && !string.isEmpty());
@@ -10,7 +8,9 @@ public class StringSchema extends BaseSchema<String> {
 
     public StringSchema minLength(int length) {
         checks.put("required", string -> {
-            if (string == null) return false;
+            if (string == null) {
+                return false;
+            }
             return string.length() >= length;
         });
         return this;

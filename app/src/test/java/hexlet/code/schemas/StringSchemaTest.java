@@ -2,13 +2,8 @@ package hexlet.code.schemas;
 
 import hexlet.code.Validator;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class StringSchemaTest {
 
@@ -16,11 +11,7 @@ class StringSchemaTest {
     StringSchema schema = validator.string();
 
     @ParameterizedTest
-    @CsvSource(value = {
-            "text, true",
-            "'', false",
-            ", false"
-    })
+    @CsvSource(value = {"text, true", "'', false", ", false"})
     void requiredIsUsedTest(String input, boolean expected) {
         schema.required();
 
@@ -29,22 +20,14 @@ class StringSchemaTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {
-            "text, true",
-            "'', true",
-            ", true"
-    })
+    @CsvSource(value = {"text, true", "'', true", ", true"})
     void requiredIsNotUsedTest(String input, boolean expected) {
         boolean result = schema.isValid(input);
         Assertions.assertEquals(result, expected);
     }
 
     @ParameterizedTest
-    @CsvSource(value = {
-            "txt, false",
-            "text, true",
-            "'some text', true"
-    })
+    @CsvSource(value = {"txt, false", "text, true", "'some text', true"})
     void minLengthTest(String input, boolean expected) {
         schema.minLength(4);
 
@@ -53,12 +36,7 @@ class StringSchemaTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {
-            "'', false",
-            ", false",
-            "none, true",
-            "two, false"
-    })
+    @CsvSource(value = {"'', false", ", false", "none, true", "two, false"})
     void containsTest(String input, boolean expected) {
         schema.contains("one");
 

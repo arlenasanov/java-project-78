@@ -1,7 +1,6 @@
 package hexlet.code.schemas;
 
 import java.util.Objects;
-import java.util.function.Predicate;
 
 public class NumberSchema extends BaseSchema<Integer> {
     public NumberSchema required() {
@@ -15,7 +14,7 @@ public class NumberSchema extends BaseSchema<Integer> {
     }
 
     public NumberSchema range(Integer num1, Integer num2) {
-        checks.put("positive",number -> number >= num1 && number <= num2);
+        checks.put("positive", number -> number >= num1 && number <= num2);
         return this;
     }
 }
