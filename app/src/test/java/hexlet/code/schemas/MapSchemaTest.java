@@ -10,8 +10,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class MapSchemaTest {
 
-    Validator validator = new Validator();
-    MapSchema schema = validator.map();
+    private final Validator validator = new Validator();
+    private final MapSchema schema = validator.map();
 
     @Test
     void requiredIsUsedTest() {

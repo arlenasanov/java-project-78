@@ -7,8 +7,8 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 class StringSchemaTest {
 
-    Validator validator = new Validator();
-    StringSchema schema = validator.string();
+    private final Validator validator = new Validator();
+    private final StringSchema schema = validator.string();
 
     @ParameterizedTest
     @CsvSource(value = {"text, true", "'', false", ", false"})

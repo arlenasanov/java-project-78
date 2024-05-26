@@ -7,8 +7,8 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 class NumberSchemaTest {
 
-    Validator validator = new Validator();
-    NumberSchema schema = validator.number();
+    private final Validator validator = new Validator();
+    private final NumberSchema schema = validator.number();
 
     @ParameterizedTest
     @CsvSource(value = {"5, true", ", false"})
