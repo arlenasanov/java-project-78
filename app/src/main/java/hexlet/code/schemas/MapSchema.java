@@ -10,7 +10,7 @@ public final class MapSchema extends BaseSchema<Map<?, ?>> {
     }
 
     public MapSchema sizeof(int size) {
-        addCheck("required", map -> {
+        addCheck("sizeof", map -> {
             if (map == null) {
                 return false;
             }

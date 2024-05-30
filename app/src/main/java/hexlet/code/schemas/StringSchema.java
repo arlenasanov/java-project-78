@@ -7,7 +7,7 @@ public final class StringSchema extends BaseSchema<String> {
     }
 
     public StringSchema minLength(int length) {
-        addCheck("required", string -> {
+        addCheck("minLength", string -> {
             if (string == null) {
                 return false;
             }
@@ -17,7 +17,7 @@ public final class StringSchema extends BaseSchema<String> {
     }
 
     public StringSchema contains(String text) {
-        addCheck("required", string -> {
+        addCheck("contains", string -> {
             if (string == null) {
                 return false;
             }
